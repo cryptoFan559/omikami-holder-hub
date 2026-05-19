@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amaterasu Omikami Holder Hub</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #060607; color: #f5f2ea; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: radial-gradient(circle at 20% 10%, rgba(199,154,72,.18), transparent 30%), radial-gradient(circle at 80% 0%, rgba(65,103,160,.18), transparent 28%), #060607; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    main { min-height: 100vh; }
+    .nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 18px 5vw; background: rgba(6,6,7,.72); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,255,255,.08); }
+    .brand { font-weight: 800; letter-spacing: .03em; display: flex; align-items: center; gap: 10px; }
+    .brandMark { color: #d6a64d; border: 1px solid rgba(214,166,77,.45); width: 32px; height: 32px; display: grid; place-items: center; border-radius: 9px; font-size: 18px; }
+    .nav nav { display: flex; gap: 26px; color: #c9c3b5; font-size: 14px; }
+    .connect, .primary { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #e0b65a, #7c5620); color: #090806; border: 0; border-radius: 999px; padding: 12px 18px; font-weight: 800; box-shadow: 0 16px 40px rgba(214,166,77,.22); }
+    .secondary { border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 12px 18px; color: #f5f2ea; display: inline-block; }
+    .hero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 60px; padding: 105px 5vw 70px; align-items: center; }
+    .eyebrow { color: #d6a64d; text-transform: uppercase; letter-spacing: .18em; font-size: 12px; font-weight: 800; margin: 0 0 8px; }
+    h1 { font-size: clamp(44px, 7vw, 90px); line-height: .95; margin: 12px 0 22px; max-width: 950px; }
+    h2 { font-size: clamp(32px, 4vw, 56px); line-height: 1; margin: 10px 0 18px; }
+    h3 { margin: 14px 0 8px; }
+    p { color: #c9c3b5; line-height: 1.75; }
+    .lead { font-size: 20px; max-width: 720px; }
+    .actions { display: flex; gap: 14px; margin: 32px 0 16px; flex-wrap: wrap; align-items: center; }
+    .trust { font-size: 14px; color: #918a7b; }
+    .heroPanel, .card, .mini, .rank, .phase, .dashCard, .glass { background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.10); border-radius: 28px; box-shadow: 0 24px 80px rgba(0,0,0,.35); }
+    .heroPanel { padding: 32px; position: relative; overflow: hidden; min-height: 420px; }
+    .orb { position: absolute; width: 260px; height: 260px; right: -80px; top: -80px; background: radial-gradient(circle, rgba(214,166,77,.52), transparent 65%); filter: blur(2px); }
+    .stat { display: flex; justify-content: space-between; gap: 20px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.08); position: relative; }
+    .stat span, .contract { color: #918a7b; }
+    .stat strong { color: #fff; text-align: right; }
+    .contract { margin-top: 24px; font-size: 12px; word-break: break-word; }
+    .section { padding: 70px 5vw; }
+    .twoCol { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+    .miniGrid, .dashboardGrid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; margin-top: 28px; }
+    .card, .mini, .dashCard { padding: 24px; }
+    .cardIcon { color: #d6a64d; font-size: 22px; margin-bottom: 8px; }
+    .miniIcon { color: #d6a64d; display: inline; margin-right: 8px; }
+    .rankList { display: grid; gap: 12px; margin-top: 24px; }
+    .rank { display: flex; justify-content: space-between; gap: 24px; padding: 20px 24px; }
+    .rank span { color: #c9c3b5; }
+    .glass { padding: 42px; margin: 70px 5vw; }
+    .voteGrid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .voteGrid button { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: #f5f2ea; border-radius: 16px; padding: 16px; text-align: left; }
+    .voteGrid button:hover { background: rgba(214,166,77,.12); border-color: rgba(214,166,77,.3); }
+    .timeline { display: grid; gap: 14px; margin-top: 28px; }
+    .phase { padding: 22px 26px; display: flex; gap: 18px; align-items: center; }
+    .phase span { color: #d6a64d; min-width: 86px; font-weight: 800; }
+    .dashCard span { display: block; color: #918a7b; margin-bottom: 8px; font-size: 14px; }
+    .dashCard strong { font-size: 20px; }
+    footer { padding: 38px 5vw; display: flex; justify-content: space-between; color: #918a7b; border-top: 1px solid rgba(255,255,255,.08); }
+    footer strong { color: #f5f2ea; }
+    .badge { display: inline-block; background: rgba(214,166,77,.15); border: 1px solid rgba(214,166,77,.3); color: #d6a64d; border-radius: 999px; padding: 4px 12px; font-size: 12px; font-weight: 700; margin-bottom: 16px; }
+    @media (max-width: 900px) {
+      .nav nav { display: none; }
+      .hero, .twoCol { grid-template-columns: 1fr; }
+      .grid, .miniGrid, .dashboardGrid, .voteGrid { grid-template-columns: 1fr; }
+      .rank, .phase, footer { flex-direction: column; align-items: flex-start; }
+      .hero { padding-top: 60px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const TOKEN_CONTRACT_ADDRESS = '0xf1B0F99E18caeF5110719ecBBcdbAD01cd86B130';
+
+    const pillars = [
+      { icon: '🤖', title: 'AI Tools', text: 'Content generation, onboarding, lore support, announcements, and community growth tools.' },
+      { icon: '✨', title: 'NFT Access', text: 'Future access passes, founder badges, lore artifacts, and ecosystem keys.' },
+      { icon: '🗳️', title: 'Community Voting', text: 'Holders help decide which prototypes deserve priority.' },
+      { icon: '👑', title: 'Holder Rewards', text: 'Loyalty-based access, rank, and future benefits.' },
+      { icon: '🪙', title: 'Staking Prototype', text: 'Transparent staking concept before live contract deployment.' },
+      { icon: '🏯', title: 'VR Temple', text: 'Future 3D Omikami space for holders, lore, and community identity.' },
+    ];
+
+    const ranks = [
+      ['Watcher', 'Entry-level community observer.'],
+      ['Holder', 'Verified token holder.'],
+      ['Loyal Holder', 'Consistent holder with deeper access.'],
+      ['Genesis Holder', 'Early supporter with stronger ecosystem identity.'],
+      ['Ryujin Guard', 'High-loyalty member protecting community direction.'],
+      ['Omikami Inner Circle', 'Top-tier access for future ecosystem benefits.'],
+    ];
+
+    const roadmap = [
+      'Holder Hub V1',
+      'Wallet verification and holder ranks',
+      'Community voting',
+      'AI utility assistant',
+      'NFT access system',
+      'Staking dashboard prototype',
+      'VR / 3D Omikami Temple',
+    ];
+
+    function App() {
+      const [connected, setConnected] = useState(false);
+      const [balance, setBalance] = useState(0);
+
+      const status = !connected ? 'Not Connected' : balance > 0 ? 'Verified Holder ✅' : 'Connected';
+      const rank = !connected || balance === 0 ? 'Watcher' : 'Holder';
+
+      function connectWalletMock() {
+        setConnected(true);
+        setBalance(1250000);
+      }
+
+      return (
+        <main>
+          <header className="nav">
+            <div className="brand"><span className="brandMark">⛩</span> Amaterasu Omikami</div>
+            <nav>
+              <a href="#holders">Holders</a>
+              <a href="#utility">Utility</a>
+              <a href="#roadmap">Roadmap</a>
+              <a href="#community">Community</a>
+            </nav>
+            <button className="connect" onClick={connectWalletMock}>
+              🔗 {connected ? 'Wallet Connected' : 'Connect Wallet'}
+            </button>
+          </header>
+
+          <section className="hero">
+            <div className="heroText">
+              <span className="badge">Community Prototype V1</span>
+              <p className="eyebrow">Community first. Utility with purpose.</p>
+              <h1>Amaterasu Omikami Holder Hub</h1>
+              <p className="lead">A community-driven utility portal for holders, AI tools, NFT access, staking prototypes, voting, and future ecosystem rewards.</p>
+              <div className="actions">
+                <button className="primary" onClick={connectWalletMock}>Connect Wallet</button>
+                <a className="secondary" href="#roadmap">View Roadmap</a>
+              </div>
+              <p className="trust">Built step by step. Verified by holders. Directed by community.</p>
+            </div>
+            <div className="heroPanel">
+              <div className="orb"></div>
+              <h3>Holder Status</h3>
+              <div className="stat"><span>Status</span><strong>{status}</strong></div>
+              <div className="stat"><span>Rank</span><strong>{rank}</strong></div>
+              <div className="stat"><span>Token Balance</span><strong>{connected ? balance.toLocaleString() : '0'}</strong></div>
+              <div className="contract">Contract: {TOKEN_CONTRACT_ADDRESS}</div>
+            </div>
+          </section>
+
+          <section id="holders" className="section twoCol">
+            <div>
+              <p className="eyebrow">Holder Identity</p>
+              <h2>Your Wallet Becomes Your Identity</h2>
+              <p>The Holder Hub connects your wallet to your role inside the Omikami ecosystem. Verified holders unlock rank, voting access, AI tools, NFT previews, staking concepts, and future community rewards.</p>
+            </div>
+            <div className="miniGrid">
+              {['🛡️ Wallet Verification', '✅ Holder Status', '🏅 Community Rank', '🔐 Private Access'].map(item => (
+                <div className="mini" key={item}>{item}</div>
+              ))}
+            </div>
+          </section>
+
+          <section id="utility" className="section">
+            <p className="eyebrow">Utility Pillars</p>
+            <h2>Utility Starts With Structure</h2>
+            <div className="grid">
+              {pillars.map(({ icon, title, text }) => (
+                <article className="card" key={title}>
+                  <div className="cardIcon">{icon}</div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="section">
+            <p className="eyebrow">Ranks</p>
+            <h2>Holder Rank System</h2>
+            <div className="rankList">
+              {ranks.map(([title, text]) => (
+                <div className="rank" key={title}>
+                  <strong>{title}</strong><span>{text}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="community" className="section twoCol glass">
+            <div>
+              <p className="eyebrow">Community Direction</p>
+              <h2>Vote On What Gets Built First</h2>
+              <p>The community helps decide which prototype receives priority. Development stays focused, transparent, and aligned with holders.</p>
+            </div>
+            <div className="voteGrid">
+              {['AI Assistant', 'Genesis Relic NFTs', 'Staking Dashboard', 'VR Temple', 'Reward System', 'Lore Expansion'].map(v => (
+                <button key={v}>{v}</button>
+              ))}
+            </div>
+          </section>
+
+          <section id="roadmap" className="section">
+            <p className="eyebrow">Roadmap</p>
+            <h2>Prototype Roadmap</h2>
+            <div className="timeline">
+              {roadmap.map((r, i) => (
+                <div className="phase" key={r}><span>Phase {i + 1}</span><strong>{r}</strong></div>
+              ))}
+            </div>
+          </section>
+
+          <section className="dashboard section">
+            <p className="eyebrow">Dashboard Preview</p>
+            <h2>Holder Dashboard</h2>
+            <div className="dashboardGrid">
+              {[
+                ['Wallet Address', connected ? '0xA7...OMI' : 'Not connected'],
+                ['Token Balance', connected ? balance.toLocaleString() : '0'],
+                ['Holder Status', status],
+                ['Rank', rank],
+                ['Voting Access', connected ? 'Preview unlocked' : 'Locked'],
+                ['AI Utility Access', 'Coming soon'],
+                ['NFT Access', 'Coming soon'],
+                ['Staking Preview', 'Concept phase'],
+              ].map(([k, v]) => (
+                <div className="dashCard" key={k}><span>{k}</span><strong>{v}</strong></div>
+              ))}
+            </div>
+          </section>
+
+          <footer>
+            <strong>Amaterasu Omikami Holder Hub</strong>
+            <span>Community first. Utility with purpose.</span>
+          </footer>
+        </main>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
