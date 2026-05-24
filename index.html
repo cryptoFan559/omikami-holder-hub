@@ -469,6 +469,55 @@
   }
 }
 }
+    @media (max-width: 768px) {
+  * { box-sizing: border-box !important; }
+  
+  body { overflow-x: hidden !important; }
+
+  header, nav { 
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 8px !important;
+    gap: 6px !important;
+  }
+
+  header > *, nav > * {
+    width: 100% !important;
+    flex-shrink: 0 !important;
+  }
+
+  img { 
+    max-width: 100% !important; 
+    height: auto !important; 
+  }
+
+  section, .section, [class*="hero"], [class*="banner"] {
+    position: relative !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: 60vh !important;
+    overflow: hidden !important;
+  }
+
+  .card, [class*="card"], [class*="panel"], [class*="box"] {
+    position: relative !important;
+    width: 100% !important;
+    margin: 8px 0 !important;
+    z-index: auto !important;
+  }
+
+  [class*="contract"], [class*="address"] {
+    word-break: break-all !important;
+    font-size: 11px !important;
+  }
+
+  [class*="grid"], [class*="row"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+}
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
 </head>
