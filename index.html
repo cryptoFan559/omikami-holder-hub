@@ -413,6 +413,77 @@
       .rank-item { flex-wrap: wrap; }
       footer { flex-direction: column; gap: 16px; text-align: center; }
     }
+  /* ===== MOBILE FIX ===== */
+@media (max-width: 768px) {
+
+  /* NAVBAR - shrink & wrap */
+  header, nav, .navbar, .nav-header {
+    flex-wrap: wrap !important;
+    overflow: hidden !important;
+    padding: 6px 8px !important;
+  }
+
+  /* Nav logos - smaller on mobile */
+  .navbar img, nav img, header img {
+    height: 32px !important;
+    width: auto !important;
+  }
+
+  /* Nav text - smaller */
+  .navbar span, .navbar p, nav span, nav p,
+  header span, header p {
+    font-size: 10px !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  /* Connect Wallet button - always visible */
+  .connect-btn, button[class*="connect"], 
+  button[class*="wallet"], .wallet-btn {
+    font-size: 10px !important;
+    padding: 6px 10px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Hero images - cap height */
+  .hero, .hero-section, section:first-of-type,
+  [class*="hero"], [class*="banner"] {
+    max-height: 55vh !important;
+    overflow: hidden !important;
+  }
+
+  /* All background images - contain height */
+  div[style*="background-image"] {
+    background-size: cover !important;
+    background-position: center top !important;
+    max-height: 60vh !important;
+  }
+
+  /* Images that are too tall */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Contract address - word break */
+  [class*="contract"], [class*="address"],
+  code, .token-address {
+    word-break: break-all !important;
+    font-size: 11px !important;
+    overflow-wrap: break-word !important;
+  }
+
+  /* Badge pills - center them */
+  [class*="badge"], [class*="pill"], [class*="tag"] {
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+  }
+
+  /* General padding fix */
+  main, .container, .content {
+    padding: 12px !important;
+  }
+}
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
 </head>
