@@ -492,12 +492,17 @@
     height: auto !important; 
   }
 
-  section, .section, [class*="hero"], [class*="banner"] {
+
+  [class*="hero"], [class*="banner"] {
     position: relative !important;
-    height: auto !important;
-    min-height: unset !important;
     max-height: 60vh !important;
     overflow: hidden !important;
+  }
+
+  section, .section {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .card, [class*="card"], [class*="panel"], [class*="box"] {
@@ -518,6 +523,15 @@
     gap: 12px !important;
   }
 }
+    [class*="rank"], [class*="holder"], [class*="tier"],
+  [class*="stats"], [class*="score"], [class*="level"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10 !important;
+    overflow: visible !important;
+  }
   </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
 </head>
