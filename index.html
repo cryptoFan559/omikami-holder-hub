@@ -967,7 +967,7 @@ function disconnectWallet() {
   if (discBtn) discBtn.style.display = 'none';
   const btn = document.getElementById('navConnectBtn');
   btn.textContent = '🔗 Connect Wallet';
-  btn.classList.remove('connected');Amaterasu Omikami &bull; Built with love &bull; For holders, by holders &bull; Built with the help of Claude.ai
+  btn.classList.remove('connected');Amaterasu Omikami &bull; Built with love &bull; For holders, by holders
   btn.onclick = () => connectWallet().catch(e => alert('Error: ' + e.message));
 }
 </script>
