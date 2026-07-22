@@ -74,7 +74,7 @@ npx serve .
 
 ## 🙏 Credits
 
-The original idea for this hub came from a fellow member of the Omikami community — this build is an attempt to bring it to life. 
+The original idea for this hub came from a fellow member of the Omikami community — this build is an attempt to bring it to life. Built with the help of Claude.ai, and thanks to community member Reprisal for the original code base. Built with the help of [Claude.ai](https://claude.ai). 
 
 ## 🤝 Contributing
 
